@@ -9,8 +9,8 @@ export interface CoverTiltTileExtraConfig {
 export const VACUUM_COMMANDS = [
   "start_pause",
   "stop",
-  "locate",
   "clean_spot",
+  "locate",
   "return_home",
 ] as const;
 
