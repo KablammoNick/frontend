@@ -16,9 +16,11 @@ const TILE_EXTRAS_SUPPORT: Record<TileExtraType, SupportsTileExtra> = {
     computeDomain(stateObj.entity_id) === "cover" &&
     (supportsFeature(stateObj, CoverEntityFeature.OPEN_TILT) ||
       supportsFeature(stateObj, CoverEntityFeature.CLOSE_TILT)),
+  "vacuum-commands": (stateObj) =>
+    computeDomain(stateObj.entity_id) === "vacuum",
 };
 
-const TILE_EXTRAS_EDITABLE: Set<TileExtraType> = new Set([]);
+const TILE_EXTRAS_EDITABLE: Set<TileExtraType> = new Set(["vacuum-commands"]);
 
 export const supportsTileExtra = (
   stateObj: HassEntity,
