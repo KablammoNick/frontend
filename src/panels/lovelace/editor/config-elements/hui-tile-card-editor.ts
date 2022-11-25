@@ -22,7 +22,10 @@ import "../../../../components/ha-form/ha-form";
 import type { SchemaUnion } from "../../../../components/ha-form/types";
 import type { HomeAssistant } from "../../../../types";
 import type { TileCardConfig } from "../../cards/types";
-import { LovelaceTileExtraConfig } from "../../tile-extra/types";
+import {
+  LovelaceTileExtraConfig,
+  LovelaceTileExtraContext,
+} from "../../tile-extra/types";
 import type { LovelaceCardEditor } from "../../types";
 import "../hui-sub-element-editor";
 import { actionConfigStruct } from "../structs/action-struct";
@@ -144,6 +147,10 @@ export class HuiTileCardEditor
       ] as const
   );
 
+  private _context = memoizeOne(
+    (entity_id?: string): LovelaceTileExtraContext => ({ entity_id })
+  );
+
   protected render(): TemplateResult {
     if (!this.hass || !this._config) {
       return html``;
@@ -169,6 +176,7 @@ export class HuiTileCardEditor
         <hui-sub-element-editor
           .hass=${this.hass}
           .config=${this._subElementEditorConfig}
+          .context=${this._context(this._config.entity)}
           @go-back=${this._goBack}
           @config-changed=${this.subElementChanged}
         >

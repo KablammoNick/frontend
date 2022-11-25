@@ -25,3 +25,7 @@ export type LovelaceTileExtraConfig =
   | CoverOpenCloseTileExtraConfig
   | CoverTiltTileExtraConfig
   | VacuumCommandsTileExtraConfig;
+
+export type LovelaceTileExtraContext = {
+  entity_id?: string;
+};
