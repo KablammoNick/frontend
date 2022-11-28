@@ -12,8 +12,10 @@ import {
   mdiCircle,
   mdiWindowShutter,
   mdiWindowShutterOpen,
-  mdiBlinds,
-  mdiBlindsOpen,
+  mdiBlindsHorizontal,
+  mdiBlindsHorizontalClosed,
+  mdiRollerShade,
+  mdiRollerShadeClosed,
   mdiWindowClosed,
   mdiWindowOpen,
   mdiArrowExpandHorizontal,
@@ -79,7 +81,6 @@ export const coverIcon = (state?: string, stateObj?: HassEntity): string => {
           return mdiCurtains;
       }
     case "blind":
-    case "shade":
       switch (state) {
         case "opening":
           return mdiArrowUpBox;
@@ -89,6 +90,17 @@ export const coverIcon = (state?: string, stateObj?: HassEntity): string => {
           return mdiBlinds;
         default:
           return mdiBlindsOpen;
+      }
+    case "shade":
+      switch (state) {
+        case "opening":
+          return mdiArrowUpBox;
+        case "closing":
+          return mdiArrowDownBox;
+        case "closed":
+          return mdiRollerShadeClosed;
+        default:
+          return mdiRollerShade;
       }
     case "window":
       switch (state) {
